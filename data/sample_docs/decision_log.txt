@@ -1,0 +1,7 @@
+Decision log (sample)
+
+Decision: use LangGraph StateGraph with an explicit router instead of autonomous agent loops.
+Reason: easier debugging, deterministic traces, and safer demos for interviews.
+Decision: always retrieve before analysis to enforce context grounding.
+Decision: emit frontend-neutral chart JSON from the visualizer so Streamlit and future UIs share one contract.
+Decision: mock LLM by default so the repository runs without cloud secrets.

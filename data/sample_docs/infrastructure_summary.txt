@@ -1,0 +1,9 @@
+Infrastructure summary (sample)
+
+StatVisor POC runs FastAPI and Streamlit locally with SQLite audit storage.
+FAISS IndexFlatIP stores normalized dense vectors on disk under data/index.
+BM25 is rebuilt from chunk JSON at process start.
+Production migration path: managed Postgres for audit, Azure AI Search or pgvector for retrieval,
+private networking to Azure OpenAI / Microsoft Foundry, and centralized telemetry.
+SLO draft: API availability 99.5%, p95 ask latency under 3s with warm index.
+Risk: single-node FAISS does not support multi-writer replicas.
