@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      LLM_PROVIDER: mock
+      INDEX_DIR: data/index
+      DATABASE_URL: sqlite:///data/statvisor.db
+    volumes:
+      - ./data:/app/data
