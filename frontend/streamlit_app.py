@@ -21,6 +21,12 @@ with st.sidebar:
             st.success(health)
         except Exception as exc:  # noqa: BLE001
             st.error(str(exc))
+    if st.button("Recent audit"):
+        try:
+            items = requests.get(f"{api_url}/v1/audit/recent", params={"limit": 5}, timeout=10).json()
+            st.json(items)
+        except Exception as exc:  # noqa: BLE001
+            st.error(str(exc))
 
 question = st.text_area(
     "Ask a research or infrastructure question",
