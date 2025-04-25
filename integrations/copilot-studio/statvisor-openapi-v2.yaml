@@ -1,0 +1,79 @@
+swagger: "2.0"
+info:
+  title: StatVisor API
+  description: REST tool contract for Microsoft Copilot Studio topics/actions.
+  version: "0.1.0"
+host: localhost:8000
+basePath: /
+schemes:
+  - http
+  - https
+securityDefinitions:
+  ApiKeyHeader:
+    type: apiKey
+    name: x-api-key
+    in: header
+security:
+  - ApiKeyHeader: []
+paths:
+  /health:
+    get:
+      operationId: HealthCheck
+      summary: Service health
+      security: []
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+  /v1/ask:
+    post:
+      operationId: AskStatVisor
+      summary: Ask the multi-agent analytics graph
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/AskRequest"
+      responses:
+        "200":
+          description: Grounded answer with citations
+          schema:
+            $ref: "#/definitions/AskResponse"
+definitions:
+  AskRequest:
+    type: object
+    required:
+      - question
+    properties:
+      question:
+        type: string
+      session_id:
+        type: string
+        default: copilot
+  AskResponse:
+    type: object
+    properties:
+      answer:
+        type: string
+      route:
+        type: string
+      insights:
+        type: array
+        items:
+          type: string
+      trace:
+        type: array
+        items:
+          type: string
+      citations:
+        type: array
+        items:
+          type: object
+      visualization:
+        type: object
