@@ -1,5 +1,7 @@
 .PHONY: install ingest run api ui test
 
+export PYTHONPATH := .
+
 install:
 	python -m pip install -r requirements.txt
 
