@@ -1,0 +1,8 @@
+StatVisor research metrics log (sample)
+
+Experiment E-214 measured retrieval quality on infrastructure incident notes.
+Dense-only recall@5 was 0.61. Hybrid FAISS + BM25 recall@5 rose to 0.78.
+Latency p95 for the ask endpoint stayed under 1.8s in mock mode on a laptop.
+Primary bottleneck: embedding batch size when re-indexing more than 10k chunks.
+Cost driver: chat completions dominate spend versus embeddings.
+Recommendation: tune dense_weight between 0.55 and 0.70 using a labeled eval set.
